@@ -1,0 +1,5 @@
+package net.viralpatel.spring3.controller;
+
+public class HelloWorldController {
+
+}

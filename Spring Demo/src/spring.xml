@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+
+<beans>
+
+		<!-- <property name="type" value="Equilateral" /> -->
+		<!-- <constructor-arg value="Equilateral"/> -->
+		<!-- <constructor-arg type="java.lang.String" value="20"/> -->
+		
+		<!-- <constructor-arg index="1" value="20"/> 
+		<constructor-arg index="0" value="Equilateral"/>  -->	
+		
+		
+<!-- 	<bean id="triangle" class="org.koushik.javabrains.Triangle">
+		<property name="points">
+			<list> 
+				 <ref bean="zeroPoint"/>
+				 <ref bean="point2"/>
+				 <ref bean="point3"/>
+			</list>
+		</property>
+	</bean> -->
+	
+	<!-- <bean id="triangle" class="org.koushik.javabrains.Triangle" autowire="byName" scope="singleton"> -->
+	<bean id="triangleParent" class="org.koushik.javabrains.Triangle">
+		<property name="PointA" ref="pointA"/>
+	</bean>
+	
+	<bean id="triangle1" class="org.koushik.javabrains.Triangle" parent="triangleParent">
+		<property name="PointB" ref="pointB" />
+		<property name="PointC" ref="pointC" />
+	</bean>	
+	
+	<bean id="triangle2" class="org.koushik.javabrains.Triangle" parent="triangleParent">
+		<property name="PointC" ref="pointC" />
+	</bean>	
+	
+
+	<bean id="pointA" class="org.koushik.javabrains.Point">
+		<property name="x" value="${pointA.pointX}"/>
+		<property name="y" value="${pointA.pointY}"/>
+	</bean>	
+
+	<bean id="pointB" class="org.koushik.javabrains.Point">
+		<property name="x" value="-20"/>
+		<property name="y" value="0"/>
+	</bean>	
+
+	<bean id="pointC" class="org.koushik.javabrains.Point">
+		<property name="x" value="20"/>
+		<property name="y" value="0"/>
+	</bean>	
+	
+	<bean id="circle" class="org.koushik.javabrains.Circle">
+		<!-- <property name="center" ref="pointA" /> -->
+		<property name="radius" value="6" />
+	</bean>	
+	
+	<!-- <bean class="org.koushik.javabrains.DisplayNameBeanPostProcessor"/> -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="pointsconfig.properties"/>
+	</bean>
+
+
+</beans>
